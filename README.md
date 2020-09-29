@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://zwallet-herliansyah.netlify.app">Zwallet</a>
+  Zwallet API
 </h1>
 
 <p align="center"><b>Aplikasi dompet digital</b></p>
