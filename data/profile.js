@@ -86,7 +86,7 @@ router.delete('/:id_user', (req, res) => {
         data: result,
       });
     } else {
-      res.status(500).send({
+      res.status(400).send({
         success: false,
         message: "Failed delete user data",
         data: [],
