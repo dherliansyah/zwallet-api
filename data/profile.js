@@ -156,7 +156,7 @@ router.get('/:firstName',(req,res)=>{
   // const {id_user} = req.params
   const{firstName}= req.params
   if(firstName){
-  db.query(`SELECT * FROM user WHERE firstName LIKE '%${firstName}%' `,(err,result,field)=>{
+  db.query(`SELECT * FROM user WHERE firstName LIKE '%${firstName}%' ORDER BY firstname ASC `,(err,result,field)=>{
     if(!err){
       res.status(200).send({
         success : true,
