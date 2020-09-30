@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
       });
     } else {
       res.status(500).send({
+        message : 'Failed get data user',
         data: [],
       });
     }
