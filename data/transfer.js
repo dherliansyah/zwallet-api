@@ -120,33 +120,4 @@ router.put('/:id_transfer',(req,res)=>{
   }  
 })
 
-// GET SEARCH AND SORTING
-
-router.get('/:firstName',(req,res)=>{
-  const{firstName}= req.params
-  if(firstName){
-  db.query(`SELECT * FROM user WHERE firstName LIKE '%${firstName}%' ORDER BY firstname ASC `,(err,result,field)=>{
-    if(!err){
-      res.status(200).send({
-        success : true,
-        message : 'Success search by firstname',
-        data : result,
-      })
-    }else{
-      res.status(400).send({
-        success : false,
-        message : 'Failed search by firstname',
-        data : [],
-      })
-    }
-  })
-}else{
-  res.status(400).send({
-    success : false,
-    message : 'All field must be filled',
-    data : [],
-  })
-}
-})
-
 module.exports = router;

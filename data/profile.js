@@ -3,22 +3,22 @@ const router = express.Router();
 const db = require("../config/db.js");
 
 // START GET DATA USER
-router.get("/", (req, res) => {
-  db.query(`SELECT * FROM user`, (err, result, field) => {
-    if (!err) {
-      res.status(200).send({
-        success : true,
-        message : 'Success get data user',
-        data: result,
-      });
-    } else {
-      res.status(500).send({
-        message : 'Failed get data user',
-        data: [],
-      });
-    }
-  });
-});
+// router.get("/", (req, res) => {
+//   db.query(`SELECT * FROM user`, (err, result, field) => {
+//     if (!err) {
+//       res.status(200).send({
+//         success : true,
+//         message : 'Success get data user',
+//         data: result,
+//       });
+//     } else {
+//       res.status(500).send({
+//         message : 'Failed get data user',
+//         data: [],
+//       });
+//     }
+//   });
+// });
 
 // START INSERT DATA USER
 router.post("/", (req, res) => {
@@ -150,5 +150,34 @@ router.put("/:id_user", (req, res) => {
     });
   }
 });
+
+// GET SEARCH AND SORTING
+
+router.get('/search',(req,res)=>{
+  let firstname = req.query.firstname
+  if(firstname){
+  db.query(`SELECT * FROM user WHERE firstName LIKE '%${firstname}%' ORDER BY firstname ASC `,(err,result,field)=>{
+    if(!err){
+      res.status(200).send({
+        success : true,
+        message : 'Success search by firstname',
+        data : result,
+      })
+    }else{
+      res.status(400).send({
+        success : false,
+        message : 'Failed search by firstname',
+        data : [],
+      })
+    }
+  })
+}else{
+  res.status(400).send({
+    success : false,
+    message : 'All field must be filled',
+    data : [],
+  })
+}
+})
 
 module.exports = router;
