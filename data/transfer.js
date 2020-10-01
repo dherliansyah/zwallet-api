@@ -123,7 +123,6 @@ router.put('/:id_transfer',(req,res)=>{
 // GET SEARCH AND SORTING
 
 router.get('/:firstName',(req,res)=>{
-  // const {id_user} = req.params
   const{firstName}= req.params
   if(firstName){
   db.query(`SELECT * FROM user WHERE firstName LIKE '%${firstName}%' ORDER BY firstname ASC `,(err,result,field)=>{
