@@ -3,22 +3,22 @@ const router = express.Router();
 const db = require("../config/db.js");
 
 // START GET DATA USER
-// router.get("/", (req, res) => {
-//   db.query(`SELECT * FROM user`, (err, result, field) => {
-//     if (!err) {
-//       res.status(200).send({
-//         success : true,
-//         message : 'Success get data user',
-//         data: result,
-//       });
-//     } else {
-//       res.status(500).send({
-//         message : 'Failed get data user',
-//         data: [],
-//       });
-//     }
-//   });
-// });
+router.get("/", (req, res) => {
+  db.query(`SELECT * FROM user`, (err, result, field) => {
+    if (!err) {
+      res.status(200).send({
+        success : true,
+        message : 'Success get data user',
+        data: result,
+      });
+    } else {
+      res.status(500).send({
+        message : 'Failed get data user',
+        data: [],
+      });
+    }
+  });
+});
 
 // START INSERT DATA USER
 router.post("/", (req, res) => {
@@ -76,9 +76,9 @@ router.post("/", (req, res) => {
 });
 
 // START DELETE USER BY ID
-router.delete('/:id_user', (req, res) => {
-  const { id_user } = req.params;
-  db.query(`DELETE FROM user WHERE id_user=${id_user}`, (err, result) => {
+router.delete('/:idUser', (req, res) => {
+  const { idUser } = req.params;
+  db.query(`DELETE FROM user WHERE idUser=${idUser}`, (err, result) => {
     if (!err) {
       res.status(200).send({
         success: true,
@@ -96,8 +96,8 @@ router.delete('/:id_user', (req, res) => {
 });
 
 // START UPDATE USER BY ID
-router.put("/:id_user", (req, res) => {
-  const { id_user } = req.params;
+router.put("/:idUser", (req, res) => {
+  const { idUser } = req.params;
   const {
     firstName,
     lastName,
@@ -123,8 +123,8 @@ router.put("/:id_user", (req, res) => {
     pin
   ) {
     db.query(
-      `UPDATE user SET firstName=?, lastName=?, userName=?, email=?, password=?, phone=?, balance=?, verified=?, photo=?, pin=? WHERE id_user=${id_user}`,
-      [firstName,lastName,userName,email,password,phone,balance,verified,photo,pin,id_user]
+      `UPDATE user SET firstName=?, lastName=?, userName=?, email=?, password=?, phone=?, balance=?, verified=?, photo=?, pin=? WHERE idUser=${idUser}`,
+      [firstName,lastName,userName,email,password,phone,balance,verified,photo,pin,idUser]
         ,(err, result, field) => {
         if (!err) {
           res.status(200).send({

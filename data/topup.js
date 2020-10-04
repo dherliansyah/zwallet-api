@@ -50,9 +50,9 @@ router.post('/',(req,res)=>{
 })
 
 // START DELETE TOPUP
-router.delete('/:id_topup',(req,res)=>{
-    const { id_topup } = req.params;
-    db.query(`DELETE FROM topup WHERE id_topup=${id_topup}`,(err,result)=>{
+router.delete('/:idTopup',(req,res)=>{
+    const { idTopup } = req.params;
+    db.query(`DELETE FROM topup WHERE idTopup=${idTopup}`,(err,result)=>{
         if(!err){
             res.status(200).send({
                 success : true,
@@ -70,15 +70,15 @@ router.delete('/:id_topup',(req,res)=>{
 })
 
 // START UPDATE TOPUP
-router.put('/:id_topup',(req,res)=>{
-    const {id_topup} = req.params;
+router.put('/:idTopup',(req,res)=>{
+    const {idTopup} = req.params;
     const{
         description
     }=req.body
     if(
         description
     ){
-        db.query(`UPDATE topup SET description=? WHERE id_topup=${id_topup}`,[description,id_topup],(err, result, field)=>{
+        db.query(`UPDATE topup SET description=? WHERE idTopup=${idTopup}`,[description,idTopup],(err, result, field)=>{
             if(!err){
                 res.status(200).send({
                     success : true,

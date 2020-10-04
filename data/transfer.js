@@ -5,7 +5,7 @@ const db = require("../config/db.js");
 // START GET DATA USER
 router.get("/", (req, res) => {
   db.query(
-    `select * from user join transfer on user.id_user = transfer.id_user`,
+    `select * from user join transfer on user.idUser = transfer.idUser`,
     (err, result, field) => {
       if (!err) {
         res.status(200).send({
@@ -26,8 +26,8 @@ router.get("/", (req, res) => {
 
 // START INSERT DATA TRANSFER
 router.post("/", (req, res) => {
-  const { id_user, amount, notes, pin, balanceLeft } = req.body;
-  if (id_user && amount && notes && pin && balanceLeft) {
+  const { idUser, amount, notes, pin, balanceLeft } = req.body;
+  if (idUser && amount && notes && pin && balanceLeft) {
     db.query(
       `INSERT INTO transfer (id_user,amount,notes,pin,balanceLeft)VALUES
             (${id_user},'${amount}','${notes}','${pin}','${balanceLeft}')`,
