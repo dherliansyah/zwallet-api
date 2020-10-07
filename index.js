@@ -18,6 +18,8 @@ const confirmTransfer = require('./data/transfer')
 const dataTopup = require('./data/topup')
     app.use('/topup', dataTopup)
 
-app.listen('8000',()=>{
-    console.log('Server runnning out')
-})
+app.listen(process.env.PORT, ()=> console.log('Server runnning out'));
+
+// app.listen('8000',()=>{
+//     console.log('Server runnning out')
+// })
